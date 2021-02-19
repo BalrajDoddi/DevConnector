@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb://localhost:27017/DevConnector?readPreference=primary&appname=MongoDB%20Compass&ssl=false",
+  "jwtSecret": "mysecrettocken",
+  "githubClientId": "423f848651c8efb78ad3",
+  "githubSecret": "c5b0afa84cae6d90338ec0fbef32aa042664dd66"
+}
