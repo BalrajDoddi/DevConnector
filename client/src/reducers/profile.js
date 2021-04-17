@@ -1,10 +1,10 @@
 import {
-  CLEAR_PROFILE,
   GET_PROFILE,
   GET_PROFILES,
   GET_REPOS,
-  PROFILE_ERROR,
   UPDATE_PROFILE,
+  CLEAR_PROFILE,
+  PROFILE_ERROR,
 } from '../actions/types';
 
 const initialState = {
