@@ -155,7 +155,7 @@ router.put('/unlike/:id', auth, async (req, res) => {
     // post.likes.splice(removeIndex, 1);
 
     post.likes = post.likes.filter(
-      (like) => like._id.toString() !== req.params.id
+      (like) => like.user.toString() !== req.user.id
     );
 
     await post.save();
