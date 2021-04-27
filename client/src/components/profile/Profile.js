@@ -23,60 +23,77 @@ const Profile = ({
 
   return (
     <Fragment>
-      {profile === null || loading ? (
+      {loading ? (
         <Spinner />
       ) : (
         <Fragment>
           <Link to='/profiles' className='btn btn-light'>
             Back to Profiles
           </Link>
-          {auth.isAuthenticated &&
-            auth.loading === false &&
-            auth.user._id === profile.user._id && (
-              <Link to='/edit-profile' className='btn btn-dark'>
-                Edit Profile
-              </Link>
-            )}
-          <div className='profile-grid my-1'>
-            <ProfileTop profile={profile} />
-            <ProfileAbout profile={profile} />
+          {profile === null ? (
+            match.params.id !== auth.user._id ? (
+              <p className='my-1'>User is have not setup a profile</p>
+            ) : (
+              <Fragment>
+                <p className='my-1'>
+                  You have not yet setup a profile, please add some info
+                </p>
+                <Link to='/create-profile' className='btn btn-primary my-1'>
+                  Create Profile
+                </Link>
+              </Fragment>
+            )
+          ) : (
+            <Fragment>
+              {auth.isAuthenticated &&
+                auth.loading === false &&
+                auth.user._id === profile.user._id && (
+                  <Link to='/edit-profile' className='btn btn-dark'>
+                    Edit Profile
+                  </Link>
+                )}
+              <div className='profile-grid my-1'>
+                <ProfileTop profile={profile} />
+                <ProfileAbout profile={profile} />
 
-            <div class='profile-exp bg-white p-2'>
-              <h2 class='text-primary'>Experiences</h2>
-              {profile.experience.length > 0 ? (
-                <Fragment>
-                  {profile.experience.map((experience) => (
-                    <ProfileExperience
-                      key={experience._id}
-                      experience={experience}
-                    />
-                  ))}
-                </Fragment>
-              ) : (
-                <h2>No Experience Credentials</h2>
-              )}
-            </div>
+                <div class='profile-exp bg-white p-2'>
+                  <h2 class='text-primary'>Experiences</h2>
+                  {profile.experience.length > 0 ? (
+                    <Fragment>
+                      {profile.experience.map((experience) => (
+                        <ProfileExperience
+                          key={experience._id}
+                          experience={experience}
+                        />
+                      ))}
+                    </Fragment>
+                  ) : (
+                    <h2>No Experience Credentials</h2>
+                  )}
+                </div>
 
-            <div class='profile-edu bg-white p-2'>
-              <h2 class='text-primary'>Education</h2>
-              {profile.education.length > 0 ? (
-                <Fragment>
-                  {profile.education.map((education) => (
-                    <ProfileEducation
-                      key={education._id}
-                      education={education}
-                    />
-                  ))}
-                </Fragment>
-              ) : (
-                <h2>No Education Credentials</h2>
-              )}
-            </div>
+                <div class='profile-edu bg-white p-2'>
+                  <h2 class='text-primary'>Education</h2>
+                  {profile.education.length > 0 ? (
+                    <Fragment>
+                      {profile.education.map((education) => (
+                        <ProfileEducation
+                          key={education._id}
+                          education={education}
+                        />
+                      ))}
+                    </Fragment>
+                  ) : (
+                    <h2>No Education Credentials</h2>
+                  )}
+                </div>
 
-            {profile.githubusername && (
-              <ProfileGithub username={profile.githubusername} />
-            )}
-          </div>
+                {profile.githubusername && (
+                  <ProfileGithub username={profile.githubusername} />
+                )}
+              </div>
+            </Fragment>
+          )}
         </Fragment>
       )}
     </Fragment>
