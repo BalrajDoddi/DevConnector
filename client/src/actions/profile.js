@@ -102,6 +102,8 @@ export const createProfile = (formData, history, edit = false) => async (
 
     if (!edit) {
       history.push('/dashboard');
+    } else {
+      history.goBack();
     }
   } catch (err) {
     const errors = err.response.data.errors;

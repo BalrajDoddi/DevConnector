@@ -9,9 +9,9 @@ const ProfileGithub = ({ username, getGithubRepos, repos }) => {
     getGithubRepos(username);
   }, [getGithubRepos, username]);
   return (
-    <div class='profile-github'>
-      <h2 class='text-primary my-2'>
-        <i class='fab fa-github'></i> Github Repos
+    <div className='profile-github'>
+      <h2 className='text-primary my-2'>
+        <i className='fab fa-github'></i> Github Repos
       </h2>
       {repos === null ? (
         <Spinner />
@@ -33,13 +33,13 @@ const ProfileGithub = ({ username, getGithubRepos, repos }) => {
 
             <div>
               <ul>
-                <li class='badge badge-primary'>
+                <li className='badge badge-primary'>
                   Stars: {repo.stargazers_count}
                 </li>
-                <li class='badge badge-dark'>
+                <li className='badge badge-dark'>
                   Watchers: {repo.watchers_count}
                 </li>
-                <li class='badge badge-light'>Forks: {repo.forks_count}</li>
+                <li className='badge badge-light'>Forks: {repo.forks_count}</li>
               </ul>
             </div>
           </div>
