@@ -31,9 +31,7 @@ const Profile = ({
             Back to Profiles
           </Link>
           {profile === null ? (
-            match.params.id !== auth.user._id ? (
-              <p className='my-1'>User is have not setup a profile</p>
-            ) : (
+            auth.isAuthenticated && match.params.id === auth.user._id ? (
               <Fragment>
                 <p className='my-1'>
                   You have not yet setup a profile, please add some info
@@ -42,6 +40,8 @@ const Profile = ({
                   Create Profile
                 </Link>
               </Fragment>
+            ) : (
+              <p className='my-1'>User is have not setup a profile</p>
             )
           ) : (
             <Fragment>
